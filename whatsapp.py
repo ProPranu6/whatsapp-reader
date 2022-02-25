@@ -16,6 +16,7 @@ from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 from urllib.parse import urlencode
 from bs4 import BeautifulSoup
  
@@ -26,7 +27,7 @@ class WhatsApp:
     browser =  None
     timeout = 10  # The timeout is set for about ten seconds
     def __init__(self, wait, screenshot=None, session=None):
-        self.browser = webdriver.Chrome()# change path
+        self.browser = webdriver.Chrome(ChromeDriverManager().install())# change path
         self.browser.get("https://web.whatsapp.com/") #to open the WhatsApp web
         # you need to scan the QR code in here (to eliminate this step, I will publish another blog
         WebDriverWait(self.browser,wait).until( 
